@@ -1,4 +1,4 @@
-package pageobjectdesignpattern;
+package pagedesign;
 
 import java.time.Duration;
 import org.openqa.selenium.chrome.ChromeDriver;
