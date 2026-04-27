@@ -17,7 +17,6 @@ public class ScreenUtility {
             TakesScreenshot ts = (TakesScreenshot) driver;
             File source = ts.getScreenshotAs(OutputType.FILE);
 
-            // Chemin de destination - utiliser File.separator pour compatibilité Windows
             String userDir = System.getProperty("user.dir");
             String destination = userDir + File.separator + "screenshots" + File.separator + screenshotName + dateName + ".png";
             File finalDestination = new File(destination);

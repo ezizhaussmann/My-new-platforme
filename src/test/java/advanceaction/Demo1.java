@@ -3,7 +3,7 @@ package advanceaction;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import org.ExtentReportManager;
+//import org.ExtentReportManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 
-public class Demo1 extends ExtentReportManager{
+public class Demo1 {
     ChromeDriver driver;
     WebDriverWait wait;
     FunctionLibrary functionLibrary;
@@ -34,6 +34,9 @@ public class Demo1 extends ExtentReportManager{
 
     @BeforeClass
     public void setup() {
+        if (extent == null) {
+            extent = ExtentReport.setup();
+        }
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         functionLibrary = new FunctionLibrary(driver);
