@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 /**
  * @created : 26/04/2026,01:05,dim.
  **/
-@Listeners({TestResultListener.class, ScreenShotListener.class, testng_tests.ExtentReportListener.class})
+@Listeners({TestResultListener.class, ScreenShotListener.class, ExtentReportListener.class})
 public class TestNgDemo extends DemoDriver {
     @BeforeSuite
     public void beforeSuite(){
