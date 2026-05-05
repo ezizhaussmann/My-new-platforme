@@ -27,7 +27,7 @@ public class Demo1 {
     ExtentTest test;
     @BeforeSuite
     public void setExtent() {
-        extent=ExtentReport.setup();
+        extent=ExtentReport.setup("Test Actions - Drag and Drop - Menu");
         screenUtility = new ScreenUtility();
     }
 
@@ -35,7 +35,7 @@ public class Demo1 {
     @BeforeClass
     public void setup() {
         if (extent == null) {
-            extent = ExtentReport.setup();
+            extent = ExtentReport.setup("Test Actions - Drag and Drop - Menu");
         }
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -126,6 +126,31 @@ public class Demo1 {
                 MediaEntityBuilder.createScreenCaptureFromPath(sc).build());
 
     }
+    @Test
+    public void menuTest() {
+        driver.get("https://jqueryui.com/menu/");
+        WebElement iframe = driver.findElement(By.tagName("iframe"));
+        driver.switchTo().frame(iframe);
+        WebElement musicElement = driver.findElement(By.id("ui-id-9"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(musicElement).pause(Duration.ofMillis(500)).perform();
+        WebElement jazzElement = driver.findElement(By.id("ui-id-10"));
+        functionLibrary.waitForElementPresent(jazzElement);
+        actions.moveToElement(jazzElement).pause(Duration.ofMillis(500)).perform();
+        WebElement bigBandElement = driver.findElement(By.id("ui-id-11"));
+        functionLibrary.waitForElementPresent(bigBandElement);
+        actions.moveToElement(bigBandElement).pause(Duration.ofMillis(500)).perform();
+        Assert.assertTrue(bigBandElement.isDisplayed());
+        test.pass("Test réussi: L'élément 'Big Band' est bien affiché");
+        try {
+            MediaEntityBuilder.createScreenCaptureFromPath(ScreenUtility.getScreenshot(driver, "Menu_Test")).build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
     @AfterMethod
     public void testResult(ITestResult result ) {
         if (result.getStatus() == ITestResult.SUCCESS) {
